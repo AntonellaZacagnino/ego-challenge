@@ -1,0 +1,60 @@
+@use '../src/styles/variables.scss';
+
+html, body, #root {
+  margin: 0;
+  padding: 0;
+}
+
+body{
+  font-family: 'ToyotaType', sans-serif;
+  margin:0;
+}
+
+#root {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.main-container{
+  flex: 1;
+  padding: 4% 8%;
+  h1{
+    font-size: 50px;
+    color:#373737;
+    font-weight: bold;
+  }
+}
+
+footer{
+  height: 50px;
+  background-color: #000;
+}
+
+// Responsive
+@media (max-width: 1024px) {
+  .main-container {
+    padding: 30px 5%;
+    h1 {
+      font-size: 40px;
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .main-container {
+    padding: 20px 4%;
+    h1 {
+      font-size: 32px;
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .main-container {
+    padding: 15px 3%;
+    h1 {
+      font-size: 24px;
+    }
+  }
+}

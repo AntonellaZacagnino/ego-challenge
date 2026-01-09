@@ -1,0 +1,242 @@
+.filters{
+    display: flex;
+    align-items: center;
+    gap: 40px;
+    font-size: 14px;
+    color: #373737;
+    letter-spacing: 0.08px;
+    border-bottom: 1px solid #D8D8D8;
+    font-family: 'Montserrat', sans-serif;
+    padding: 15px 20px;
+    
+    span{
+      font-weight: bold;
+      font-family: 'Montserrat', sans-serif;
+    }
+    .filters-container {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    
+    .sort-container {
+      display: flex;
+      align-items: center;
+      margin-left: auto;
+      select{
+        border: none;
+        font-weight: bold;
+      }
+    }
+    
+    .filters-list{
+      list-style: none;
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-start;
+      width: auto;
+      margin: 0;
+      gap: 10px;
+      
+      li {
+        padding: 8px 16px;
+        border-radius: 20px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        white-space: nowrap;
+        
+        &.active {
+          background-color: #F7F7F7;
+        }
+        
+        &:hover {
+          background-color: #F7F7F7;
+        }
+      }
+    }
+    
+    .filters-dropdown {
+      display: none;
+    }
+    
+    select{
+      border: 1px solid #D8D8D8;
+      color: #373737;
+      font-size: 14px;
+      letter-spacing: 0.08px;
+      padding: 8px 12px;
+      background-color: white;
+      cursor: pointer;
+      border-radius: 4px;
+      font-family: 'Montserrat', sans-serif;
+      min-width: 180px;
+    }
+}
+
+.model-list{
+    display: flex;
+    flex-wrap: wrap;
+    list-style: none;
+    justify-content: center;
+    padding: 20px;
+    gap: 20px;
+    
+    .model-card{
+        width: 270px;
+        padding: 10px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        transition: transform 0.3s ease;
+        
+        &:hover{
+            transform: translateY(-5px);
+            h2{
+                color: red;
+            }
+            button{
+                visibility: visible;
+                background-color: black;
+                color: white;
+                border: none;
+                font-family: 'Montserrat', sans-serif;
+                font-size: 13px;
+                padding: 10px 20px;
+                border-radius: 20px;
+                width: 152px;
+                cursor:pointer;
+            }
+        }
+        
+        button{
+            visibility: hidden;
+            transition: visibility 0.3s ease;
+        }
+        
+        h2{
+            margin: 5px;
+            font-size: 28px;
+        }
+        
+        img{
+            width: 100%;
+            height: 200px;
+            object-fit: contain;
+            transition: transform 0.3s ease;
+        }
+        
+        li{
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        
+        span{
+            font-size: 14px;
+            color: #191919;
+        }
+    }
+}
+
+@media (max-width: 1024px) {
+  .filters {
+    span {
+      flex-basis: 100%;
+    }
+  }
+  
+  .model-list {
+    .model-card {
+      width: 220px;
+      h2 {
+        font-size: 24px;
+      }
+    }
+  }
+}
+
+@media (max-width: 768px) {
+  .filters {
+    span{
+      display: none;
+    }
+    .filters-container {
+      width: 100%;
+      flex-direction: row;
+      gap: 12px;
+    }
+    
+    .sort-container {
+      flex-direction: row;
+    }
+    
+    .filters-list {
+      display: none;
+    }
+    
+    .filters-dropdown, select {
+      display: block !important;
+      padding: 8px 12px;
+      border: none;
+      font-size: 14px;
+      font-weight: bold;
+    }
+    
+  }
+  
+  .model-list {
+    padding: 15px;
+    
+    .model-card {
+      width: 200px;
+      h2 {
+        font-size: 22px;
+      }
+      img {
+        height: 160px;
+      }
+    }
+  }
+}
+
+@media (max-width: 480px) {
+  .filters {
+    padding: 10px 0;
+    gap: 15px;
+    .filters-dropdown, select{
+        font-size: 12px;
+        padding: 0;
+    }
+
+    ul {
+      li {
+        padding: 6px 12px;
+        font-size: 12px;
+      }
+    }
+    
+  }
+  
+  .model-list {
+    padding: 10px;
+    justify-content: space-around;
+    
+    .model-card {
+      width: 160px;
+      h2 {
+        font-size: 18px;
+      }
+      img {
+        height: 120px;
+        
+        &:active {
+          transform: scale(0.95);
+        }
+      }
+      span {
+        font-size: 12px;
+      }
+      
+    }
+  }
+}
