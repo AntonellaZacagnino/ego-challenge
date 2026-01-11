@@ -28,15 +28,25 @@ cd EGO-Challenge
 
 2. **Instalar dependencias**
 
+Con npm:
 ```bash
 npm install
+```
+
+Con yarn:
+```bash
 yarn install
 ```
 
 3. **Levantar el proyecto**
 
+Con npm:
 ```bash
 npm run dev
+```
+
+Con yarn:
+```bash
 yarn dev
 ```
 
