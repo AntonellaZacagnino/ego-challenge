@@ -1,4 +1,4 @@
-@use '../src/styles/variables.scss';
+@import '../src/styles/variables.scss';
 
 html, body, #root {
   margin: 0;
@@ -21,7 +21,7 @@ body{
   padding: 4% 8%;
   h1{
     font-size: 50px;
-    color:#373737;
+    color:$primary-color;
     font-weight: bold;
   }
 }

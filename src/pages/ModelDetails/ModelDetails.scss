@@ -1,4 +1,4 @@
-@use '../../styles/variables.scss';
+@import '../../styles/variables.scss';
 
 .model-details {
     .model-header {
@@ -15,8 +15,8 @@
         
         .model-title{
             padding: 20px 40px;
-            font-family: 'Montserrat', sans-serif;
-            color: #373737;
+            font-family: $primary-font;
+            color: $primary-color;
             
             .title{
                 font-size: 20px;
@@ -41,22 +41,46 @@
     
     .features{
       background-color: #F7F7F7;
-      padding: 20px 0 0px 20px;
-      .keen-slider{
-        .keen-slider__slide{
-          img{
-            border-radius: 10px;
+      padding: 20px 0 50px 20px;
+      .slider-container{
+        .slick-slider{
+          .slick-prev, .slick-next{
+            top: 56%;
+            z-index: 1;
+            width: 100px;
+            min-height: 132%;
+            background: #ffffff99;
+            &:before{
+              color: #474747;
+              opacity: 1;
+            }
           }
-          h3{
-            color: #373737;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 20px;
-            font-weight: 600;
+          .slick-prev{
+            left: -20px;
           }
-          p{
-            color: #373737;
-            font-family: 'Montserrat', sans-serif;
-            font-size: 16px;
+          .slick-next{
+            right: 0;
+          }
+          .slick-list{
+            .slick-track{
+              .slick-slide{
+                img{
+                  border-radius: 10px;
+                }
+                h3{
+                  color: $primary-color;
+                  font-family: $primary-font;
+                  font-size: 20px;
+                  font-weight: 600;
+                  width: 70%;
+                }
+                p{
+                  color: $primary-color;
+                  font-family: $primary-font;
+                  font-size: 16px;
+                }
+              }
+            }
           }
         }
       }
@@ -79,8 +103,8 @@
                 }
                 
                 .highlight-text{
-                    color: #373737;
-                    font-family: 'Montserrat', sans-serif;
+                    color: $primary-color;
+                    font-family: $primary-font;
                     flex: 1;
                     padding: 0 60px;
                     max-width: 25vw;
@@ -111,15 +135,21 @@
       flex-direction: column;
       text-align: center;
       
-      img {
-        height: 250px;
-      }
-      
       .model-title {
         padding: 20px;
         
         .description {
           font-size: 40px;
+        }
+      }
+    }
+
+    .features{
+      .slider-container{
+        .slick-slider{
+          .slick-prev, .slick-next{
+            min-height: 34vw;
+          }
         }
       }
     }
@@ -169,14 +199,10 @@
     }
 
     .features{
-      .keen-slider{
-        .keen-slider__slide{
-          padding: 10px;
-          img{
-            width: 95%;
-          }
-          h3, p{
-            padding: 0 10px;
+      .slider-container{
+        .slick-slider{
+          .slick-prev, .slick-next{
+            display: none !important;
           }
         }
       }
@@ -224,20 +250,24 @@
 
     .features{
       padding: 20px 0 0px 10px;
-      .keen-slider{
-        padding: 0;
-        .keen-slider__slide{
-          padding: 10px;
-          img{
-            width: 95%;
+      .slider-container{
+        .slick-slider{
+          .slick-prev, .slick-next{
+            display: none !important;
           }
-          h3, p{
-            padding: 0 10px;
+          .slick-list{
+            .slick-track{
+              .slick-slide{
+                h3{
+                  width: 100%;
+                }
+              }
+            }
           }
         }
       }
     }
-      
+
     .highlights ul {
       padding: 20px 10px;
       

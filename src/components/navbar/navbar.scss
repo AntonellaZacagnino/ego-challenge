@@ -1,4 +1,4 @@
-@use '../../styles/variables.scss';
+@import '../../styles/variables.scss';
 
 .navbar{
     display: flex;
@@ -18,7 +18,7 @@
         width: 20%;
         justify-content: space-evenly;
         margin: 0;
-        font-family: 'Montserrat', sans-serif;
+        font-family: $primary-font;
         li {
             margin: 20px 0 0 0;
             height: 35px;
@@ -101,7 +101,7 @@
             span{
                 font-size: 14px;
                 font-weight: normal;
-                font-family: 'Montserrat', sans-serif;
+                font-family: $primary-font;
             }
         }
 
@@ -112,7 +112,7 @@
             width: 100% !important;
             padding: 0;
             font-size: 20px;
-            font-family: 'Montserrat', sans-serif;
+            font-family: $primary-font;
             margin: 20px 0;
             &:nth-child(2) {
                 margin-top: 4vw;

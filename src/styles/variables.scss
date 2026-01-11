@@ -6,6 +6,12 @@
 
 @import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap');
 
+$primary-font: 'Montserrat', sans-serif;
+$primary-color: #373737;
+
+
+// Animations
+
 @keyframes fade-in-bottom {
   0% {
     -webkit-transform: translateY(50px);

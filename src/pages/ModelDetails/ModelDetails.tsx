@@ -2,9 +2,10 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getDetailsModel, type DetailsModel } from '../../services/detailsModels';
 import './ModelDetails.scss';
-import { useKeenSlider } from "keen-slider/react"
-import "keen-slider/keen-slider.min.css"
 import Loader from '../../components/Loader/Loader';
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css";
+import "slick-carousel/slick/slick-theme.css";
 
 export default function ModelDetails() {
     const { id } = useParams<{ id: string }>();
@@ -12,24 +13,42 @@ export default function ModelDetails() {
     const [model, setModel] = useState<DetailsModel | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
-    const [ref] = useKeenSlider<HTMLDivElement>({
-    loop: false,
-    mode: "free-snap",
-    breakpoints: {
-      "(min-width: 300px)": {
-        slides: { perView: 1, spacing: 5 },
+
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 5,
+    slidesToScroll: 5,
+    initialSlide: 0,
+    responsive: [
+      {
+        breakpoint: 1100,
+        settings: {
+          slidesToShow: 3,
+          slidesToScroll: 3,
+          infinite: true,
+          dots: true
+        }
       },
-      "(min-width: 768px)": {
-        slides: { perView: 2, spacing: 10 },
+      {
+        breakpoint: 769,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          initialSlide: 2
+        }
       },
-      "(min-width: 1024px)": {
-        slides: { perView: 3, spacing: 15 },
-      },
-      "(min-width: 1280px)": {
-        slides: { perView: 5, spacing: 20 },
-      },
-    },
-  })
+      {
+        breakpoint: 480,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1
+        }
+      }
+    ]
+  };
+
     useEffect(() => {
         getDetailsModel(modelId)
             .then(data => setModel(data))
@@ -56,14 +75,16 @@ export default function ModelDetails() {
 
             {model.model_features && model.model_features.length > 0 && (
                 <div className="features">
-                    <div ref={ref} className="keen-slider">
+                    <div className="slider-container">
+                        <Slider {...settings}>    
                         {model.model_features.map((feature) => (
-                            <div className="keen-slider__slide number-slide1">
-                                <img src={feature.image} alt={feature.name} />
-                                <h3>{feature.name}</h3>
-                                <p>{feature.description}</p>
-                            </div>
+                                <div>
+                                    <img src={feature.image} alt={feature.name} />
+                                    <h3>{feature.name}</h3>
+                                    <p>{feature.description}</p>
+                                </div>
                         ))}
+                        </Slider>
                     </div>
                 </div>
             )}
