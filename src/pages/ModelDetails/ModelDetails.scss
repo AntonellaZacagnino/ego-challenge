@@ -1,13 +1,16 @@
+@use '../../styles/variables.scss';
+
 .model-details {
     .model-header {
         display: flex;
-        padding: 50px 100px;
+        padding: 50px 8vw;
         align-items: center;
         gap: 40px;
         
         img{
-            height: 320px;
+            width: 40vw;
             flex-shrink: 0;
+	          animation: fade-in-left 1.2s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
         }
         
         .model-title{
@@ -18,6 +21,7 @@
             .title{
                 font-size: 20px;
                 font-weight: 600;
+	              animation: fade-in 1.2s cubic-bezier(0.390, 0.575, 0.565, 1.000) both;
             }
             
             .description{
@@ -25,97 +29,39 @@
                 font-weight: 600;
                 margin:0;
                 margin-bottom: 40px;
+	              animation: fade-in 1.2s cubic-bezier(0.390, 0.575, 0.565, 1.000) 0.2s both;
             }
             
             p{
                 font-size:16px;
+	              animation: fade-in 2s cubic-bezier(0.390, 0.575, 0.565, 1.000) 0.5s both;
             }
         }
     }
     
-    .features-carousel {
-        background-color: #F7F7F7;
-        padding: 50px 20px;
-        position: relative;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        
-        .carousel-btn {
-            background: rgba(255, 255, 255, 0.8);
-            border: none;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            font-size: 24px;
-            cursor: pointer;
-            position: absolute;
-            top: 50%;
-            transform: translateY(-50%);
-            z-index: 2;
-            transition: background-color 0.3s;
-            
-            &:hover {
-                background: rgba(255, 255, 255, 1);
-            }
-            
-            &.prev {
-                left: 20px;
-            }
-            
-            &.next {
-                right: 20px;
-            }
-        }
-        
-        .feature-item {
+    .features{
+      background-color: #F7F7F7;
+      padding: 20px 0 0px 20px;
+      .keen-slider{
+        .keen-slider__slide{
+          img{
+            border-radius: 10px;
+          }
+          h3{
             color: #373737;
-            width: 300px;
-            text-align: center;
             font-family: 'Montserrat', sans-serif;
-            
-            img {
-                border-radius: 10px;
-                width: 100%;
-                height: 200px;
-                object-fit: cover;
-            }
-            
-            h3 {
-                font-size: 20px;
-                margin: 20px 0 10px;
-            }
-            
-            p {
-                font-size: 14px;
-                margin: 0;
-            }
+            font-size: 20px;
+            font-weight: 600;
+          }
+          p{
+            color: #373737;
+            font-family: 'Montserrat', sans-serif;
+            font-size: 16px;
+          }
         }
-        
-        .carousel-dots {
-            position: absolute;
-            bottom: 20px;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            gap: 10px;
-            
-            .dot {
-                width: 12px;
-                height: 12px;
-                border-radius: 50%;
-                border: none;
-                background: rgba(255, 255, 255, 0.5);
-                cursor: pointer;
-                transition: background-color 0.3s;
-                
-                &.active {
-                    background: #fff;
-                }
-            }
-        }
+      }
     }
-    
+
     .highlights{
         ul{
             padding: 4vw 8vw;
@@ -125,6 +71,7 @@
                 margin-bottom: 6vw;
                 display: flex;
                 align-items: center;
+                justify-content: space-around;
                 gap: 50px;
                 
                 &:nth-child(even) {
@@ -136,7 +83,7 @@
                     font-family: 'Montserrat', sans-serif;
                     flex: 1;
                     padding: 0 60px;
-                    
+                    max-width: 25vw;
                     h3{
                         font-size: 20px;
                         font-weight: 600;
@@ -148,7 +95,6 @@
                 }
                 
                 img{
-                    flex: 1;
                     max-width: 100%;
                     height: auto;
                 }
@@ -180,9 +126,12 @@
     
     .highlights ul li {
       gap: 30px;
-      
+      img{
+        max-width: 50%;
+      }
       .highlight-text {
         padding: 0 30px;
+        max-width: 50%;
       }
     }
   }
@@ -218,33 +167,17 @@
         }
       }
     }
-    
-    .features-carousel {
-      padding: 40px 15px;
-      
-      .carousel-btn {
-        width: 40px;
-        height: 40px;
-        font-size: 20px;
-        
-        &.prev {
-          left: 10px;
-        }
-        
-        &.next {
-          right: 10px;
-        }
-      }
-      
-      .feature-item {
-        width: 250px;
-        
-        h3 {
-          font-size: 18px;
-        }
-        
-        p {
-          font-size: 13px;
+
+    .features{
+      .keen-slider{
+        .keen-slider__slide{
+          padding: 10px;
+          img{
+            width: 95%;
+          }
+          h3, p{
+            padding: 0 10px;
+          }
         }
       }
     }
@@ -257,7 +190,7 @@
       .highlight-text {
         padding: 0 !important;
         text-align: left;
-        
+        max-width: unset;
         h3 {
           font-size: 20px;
           font-weight: 600;
@@ -288,50 +221,23 @@
         
       }
     }
-    
-    .features-carousel {
-      padding: 30px 10px;
-      
-      .carousel-btn {
-        width: 35px;
-        height: 35px;
-        font-size: 18px;
-        
-        &.prev {
-          left: 5px;
-        }
-        
-        &.next {
-          right: 5px;
-        }
-      }
-      
-      .feature-item {
-        width: 200px;
-        
-        img {
-          height: 150px;
-        }
-        
-        h3 {
-          font-size: 16px;
-        }
-        
-        p {
-          font-size: 12px;
-        }
-      }
-      
-      .carousel-dots {
-        bottom: 15px;
-        
-        .dot {
-          width: 10px;
-          height: 10px;
+
+    .features{
+      padding: 20px 0 0px 10px;
+      .keen-slider{
+        padding: 0;
+        .keen-slider__slide{
+          padding: 10px;
+          img{
+            width: 95%;
+          }
+          h3, p{
+            padding: 0 10px;
+          }
         }
       }
     }
-    
+      
     .highlights ul {
       padding: 20px 10px;
       

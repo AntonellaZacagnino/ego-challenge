@@ -1,13 +1,11 @@
 import './App.scss'
 import { Routes, Route } from 'react-router-dom';
-import { useState } from 'react';
 import ListModels from './components/ListModels/ListModels';
 import Navbar from './components/navbar/navbar';
 import ModelDetails from './pages/ModelDetails/ModelDetails';
 
 function App() {
-  // const [selectedFilter, setSelectedFilter] = useState('Todos');
-
+  
   return (
     <>
       <Navbar />

@@ -2,6 +2,9 @@ import { useState, useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { getDetailsModel, type DetailsModel } from '../../services/detailsModels';
 import './ModelDetails.scss';
+import { useKeenSlider } from "keen-slider/react"
+import "keen-slider/keen-slider.min.css"
+import Loader from '../../components/Loader/Loader';
 
 export default function ModelDetails() {
     const { id } = useParams<{ id: string }>();
@@ -9,8 +12,24 @@ export default function ModelDetails() {
     const [model, setModel] = useState<DetailsModel | null>(null);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
-    const [currentFeature, setCurrentFeature] = useState(0);
-
+    const [ref] = useKeenSlider<HTMLDivElement>({
+    loop: false,
+    mode: "free-snap",
+    breakpoints: {
+      "(min-width: 300px)": {
+        slides: { perView: 1, spacing: 5 },
+      },
+      "(min-width: 768px)": {
+        slides: { perView: 2, spacing: 10 },
+      },
+      "(min-width: 1024px)": {
+        slides: { perView: 3, spacing: 15 },
+      },
+      "(min-width: 1280px)": {
+        slides: { perView: 5, spacing: 20 },
+      },
+    },
+  })
     useEffect(() => {
         getDetailsModel(modelId)
             .then(data => setModel(data))
@@ -18,19 +37,7 @@ export default function ModelDetails() {
             .finally(() => setLoading(false));
     }, [modelId]);
 
-    const nextFeature = () => {
-        if (model?.model_features) {
-            setCurrentFeature((prev) => (prev + 1) % model.model_features.length);
-        }
-    };
-
-    const prevFeature = () => {
-        if (model?.model_features) {
-            setCurrentFeature((prev) => (prev - 1 + model.model_features.length) % model.model_features.length);
-        }
-    };
-
-    if (loading) return <p>Cargando...</p>;
+    if (loading) return <Loader />;
     if (error) return <p>Error: {error}</p>;
     if (!model) return <p>Modelo no encontrado</p>;
 
@@ -48,21 +55,14 @@ export default function ModelDetails() {
             </div>
 
             {model.model_features && model.model_features.length > 0 && (
-                <div className="features-carousel">
-                    <button className="carousel-btn prev" onClick={prevFeature}>‹</button>
-                    <div className="feature-item">
-                        <img src={model.model_features[currentFeature].image} alt={model.model_features[currentFeature].name} />
-                        <h3>{model.model_features[currentFeature].name}</h3>
-                        <p>{model.model_features[currentFeature].description}</p>
-                    </div>
-                    <button className="carousel-btn next" onClick={nextFeature}>›</button>
-                    <div className="carousel-dots">
-                        {model.model_features.map((_, index) => (
-                            <button
-                                key={index}
-                                className={`dot ${index === currentFeature ? 'active' : ''}`}
-                                onClick={() => setCurrentFeature(index)}
-                            />
+                <div className="features">
+                    <div ref={ref} className="keen-slider">
+                        {model.model_features.map((feature) => (
+                            <div className="keen-slider__slide number-slide1">
+                                <img src={feature.image} alt={feature.name} />
+                                <h3>{feature.name}</h3>
+                                <p>{feature.description}</p>
+                            </div>
                         ))}
                     </div>
                 </div>
@@ -73,7 +73,7 @@ export default function ModelDetails() {
                     <ul>
                         {model.model_highlights.map((highlight, index) => (
                             <li key={index}>
-                                <div className="highlight-text">
+                                <div className="highlight-text" >
                                     <h3>{highlight.title}</h3>
                                     <p>{highlight.content}</p>
                                 </div>

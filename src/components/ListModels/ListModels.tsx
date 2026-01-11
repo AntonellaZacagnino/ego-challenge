@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { getModels, type Model } from "../../services/models";
 import './ListModels.scss';
+import Loader from '../Loader/Loader';
 
 export default function ListModels() {
   const navigate = useNavigate();
@@ -18,7 +19,7 @@ export default function ListModels() {
       .finally(() => setLoading(false));
   }, []);
 
-  if (loading) return <p>Cargando...</p>;
+  if (loading) return <Loader />;
   if (error) return <p>Error: {error}</p>;
 
   function getFilteredModels(): Model[] {
